@@ -1,0 +1,82 @@
+@import "../../variables"
+
+.morning
+  background-color: rgba($main-grey, 0.1)
+  border-left: 5px solid $main-grey !important
+
+.morning-hover
+  &:hover
+    border-left: 5px solid $main-grey
+
+
+.day
+  background-color: rgba($main-blue, 0.1)
+  border-left: 5px solid $main-blue !important
+
+.day-hover
+  &:hover
+    border-left: 5px solid $main-blue
+
+.evening
+  background-color: rgba($main-pink, 0.1)
+  border-left: 5px solid $main-pink !important
+
+.evening-hover
+  &:hover
+    border-left: 5px solid $main-pink
+
+.night
+  background-color: rgba($main-dark, 0.1)
+  border-left: 5px solid $main-dark !important
+
+.night-hover
+  &:hover
+    border-left: 5px solid $main-dark
+
+.nav
+  background-color: white
+  width: 350px
+  height: 100vh
+  border-right: 1px solid $grey
+  &-search
+    text-align: center
+    padding-top: 50px
+    &__input
+      width: 70%
+      font-size: 20px
+      line-height: 30px
+      border-radius: 20px
+      padding: 0 15px
+      margin-bottom: 50px
+      &::placeholder
+        color: silver
+      &:focus
+        outline: none
+  &-date
+    text-align: center
+    h3
+      font-size: 20px
+      line-height: 40px
+      text-transform: uppercase
+    h4
+      font-size: 18px
+      line-height: 20px
+  &-name
+    font-size: 25px
+    text-align: center
+  &-list
+    list-style: none
+    &__link
+      width: 100%
+      a
+        font-size: 20px
+        padding: 0 20px
+        text-decoration: none
+        text-transform: uppercase
+        line-height: 70px
+        display: block
+        width: 100%
+        border-left: 5px solid transparent
+        span
+          padding-right: 10px
+

@@ -1,0 +1,29 @@
+@import "../../variables"
+
+.list
+  background-color: #F8F5FB
+  height: 65vh
+  overflow-y: auto
+  &-add,
+  &-item
+    display: flex
+    max-width: 100%
+    padding: 0 30px
+    height: 70px
+    border-bottom: 1px solid $grey
+    line-height: 70px
+    background-color: white
+    justify-content: space-between
+    &__date
+      color: silver
+      font-size: 20px
+    a,
+    svg
+      color: $main-pink
+      text-decoration: none
+      text-transform: uppercase
+      font-size: 20px
+      span
+        margin-left: 20px
+  &-add
+

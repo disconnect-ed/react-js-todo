@@ -1,0 +1,58 @@
+@import "../../variables"
+
+.margin
+  height: 70px
+  width: 100%
+
+.create
+  background-color: white
+  height: 65vh
+  overflow-y: auto
+  padding: 0 30px
+  padding-top: 20px
+  margin-bottom: 50px
+  &__actions
+    margin-bottom: 50px
+  &__error
+    color: red
+    font-size: 20px
+    margin-bottom: 15px
+  &__title
+    font-size: 30px
+    margin-bottom: 20px
+  &__input
+    width: 50%
+    font-size: 25px
+    line-height: 40px
+    border-radius: 20px
+    padding: 0 15px
+    margin-bottom: 50px
+    &::placeholder
+      color: silver
+    &:focus
+      outline: none
+  &__textarea
+    width: 70%
+    font-size: 20px
+    line-height: 30px
+    border-radius: 20px
+    height: 250px
+    padding: 15px
+    margin-bottom: 50px
+    &::placeholder
+      color: silver
+    &:focus
+      outline: none
+  &__button
+    padding: 0 15px
+    display: block
+    color: white
+    text-transform: uppercase
+    font-size: 25px
+    line-height: 40px
+    border-radius: 20px
+    cursor: pointer
+    &:focus
+      outline: none
+
+
