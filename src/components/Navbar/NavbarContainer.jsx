@@ -2,7 +2,8 @@ import React from "react";
 import Navbar from "./Navbar";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {getSearchQuery, getSearchTodos, getTodoList} from "../../redux/actions/app-action";
+import {getSearchQuery, getSearchTodos} from "../../redux/actions/app-action";
+import {getDate} from "../utils/methods";
 
 class NavbarContainer extends React.Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class NavbarContainer extends React.Component {
 
     componentDidMount() {
         setInterval(() => {
-            this.getDate()
+            this.setState({date: getDate()})
         }, 1000)
     }
 
@@ -31,33 +32,26 @@ class NavbarContainer extends React.Component {
         }
     }
 
-    // goSearch() {
-    //     this.props.history.push('/search')
+    // getDate() {
+    //     const date = new Date()
+    //     const day = date.getDate()
+    //     const month = date.getMonth()
+    //     const year = date.getFullYear()
+    //     const hours = date.getHours()
+    //     const minuts = date.getMinutes()
+    //     const seconds = date.getSeconds()
+    //     const fullDate = `${day}.${month}.${year} ${hours}:${minuts}:${seconds}`
+    //     this.setState({date: fullDate})
+    //     return
     // }
-    //
-    // goAll() {
-    //     this.props.history.push('/all')
-    // }
-
-    getDate() {
-        const date = new Date()
-        const day = date.getDate()
-        const month = date.getMonth()
-        const year = date.getFullYear()
-        const hours = date.getHours()
-        const minuts = date.getMinutes()
-        const seconds = date.getSeconds()
-        const fullDate = `${day}.${month}.${year} ${hours}:${minuts}:${seconds}`
-        this.setState({date: fullDate})
-        return
-    }
 
     render() {
         return (
             <Navbar searchTodo={(value) => this.searchTodo(value)} searchQuery={this.props.searchQuery}
-                    // searchTodo={this.searchTodo}
+                    menu={this.props.menu}
                     activeClass={this.props.activeClass}
                     textColor={this.props.textColor}
+                    showMenu={this.props.showMenu}
                     date={this.state.date}/>
         )
     }
@@ -65,11 +59,10 @@ class NavbarContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        todos: state.app.todos,
         searchQuery: state.app.searchQuery,
     }
 }
 
 let urlDataContainer = withRouter(NavbarContainer);
 
-export default connect(mapStateToProps, {getSearchQuery, getSearchTodos, getTodoList})(urlDataContainer)
+export default connect(mapStateToProps, {getSearchQuery, getSearchTodos})(urlDataContainer)

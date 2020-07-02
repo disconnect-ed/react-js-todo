@@ -7,12 +7,14 @@ export const ListItem = ({textColor, item}) => {
     return (
         <div style={item.urgent ? {backgroundColor: textColor} : null} className="list-item">
             <div className="list-item__info">
-                    <span>
+                <NavLink className='list-item__link' style={item.urgent ? {color: 'white'} : {color: textColor}} to={`/todo/${item.id}`}>
+                    <div className='list-item__icon'>
                         {item.favorite &&
-                            <FontAwesomeIcon style={item.urgent ? {color: 'white'} : {color: textColor}} icon={faStar}/>
+                        <FontAwesomeIcon style={item.urgent ? {color: 'white'} : {color: textColor}} icon={faStar}/>
                         }
-                    </span>
-                <NavLink style={item.urgent ? {color: 'white'} : {color: textColor}} to={`/todo/${item.id}`}><span>{item.title}</span></NavLink>
+                    </div>
+                    <div className='list-item__text'>{item.title}</div>
+                </NavLink>
             </div>
             <div style={item.urgent ? {color: 'white'} : null} className="list-item__date">
                 {item.date}

@@ -1,4 +1,4 @@
-@import "../../variables"
+@import "../../MainStyles/variables"
 
 .list
   background-color: #F8F5FB
@@ -8,7 +8,7 @@
   &-item
     display: flex
     max-width: 100%
-    padding: 0 30px
+    padding: 0 20px
     height: 70px
     border-bottom: 1px solid $grey
     line-height: 70px
@@ -17,13 +17,40 @@
     &__date
       color: silver
       font-size: 20px
-    a,
-    svg
+    &__link,
+    &__icon
       color: $main-pink
       text-decoration: none
       text-transform: uppercase
       font-size: 20px
-      span
-        margin-left: 20px
-  &-add
+    &__icon
+      margin-right: 15px
+      min-width: 25px
+    &__link
+      display: flex
+    &__text
+      width: 500px
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: pre
 
+@media only screen and (max-width: 767px)
+
+  .list
+    &-item
+      &__text
+        width: 300px
+
+@media only screen and (max-width: 579px)
+
+  .list
+    &-item
+      &__date
+        display: none
+
+@media only screen and (max-width: 420px)
+
+  .list
+    &-item
+      &__text
+        width: 200px

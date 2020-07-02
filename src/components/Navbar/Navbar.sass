@@ -1,4 +1,7 @@
-@import "../../variables"
+@import "../../MainStyles/variables"
+
+.nav-active
+  left: 0 !important
 
 .morning
   background-color: rgba($main-grey, 0.1)
@@ -38,21 +41,27 @@
   width: 350px
   height: 100vh
   border-right: 1px solid $grey
+  overflow-x: hidden
+  overflow-scrolling: auto
   &-search
     text-align: center
-    padding-top: 50px
+    padding-top: 120px
     &__input
-      width: 70%
+      width: 80%
       font-size: 20px
       line-height: 30px
       border-radius: 20px
       padding: 0 15px
       margin-bottom: 50px
+      box-sizing: border-box
       &::placeholder
         color: silver
       &:focus
         outline: none
   &-date
+    margin-top: 100px
+    width: 100%
+    bottom: 100px
     text-align: center
     h3
       font-size: 20px
@@ -80,3 +89,42 @@
         span
           padding-right: 10px
 
+
+@media only screen and (max-width: 1024px)
+
+  .nav
+    position: fixed
+    z-index: 30
+    left: -200%
+    transition: all 0.5s ease
+    &-bg
+      display: block
+
+@media only screen and (max-width: 600px)
+
+  .nav
+    max-width: 320px
+
+
+@media only screen and (max-height: 600px)
+
+  .nav
+    &-search
+      padding-top: 70px
+      &__input
+        margin-bottom: 20px
+    &-date
+      h3
+        font-size: 16px
+      h4
+        font-size: 14px
+    &-list
+      &__link
+        a
+          line-height: 50px
+
+@media only screen and (max-height: 500px)
+
+  .nav
+    &-date
+      display: none

@@ -1,6 +1,7 @@
 import React from "react";
 import InfoScreen from "./InfoScreen";
 import {withRouter} from "react-router-dom";
+import {getTitle} from "../utils/methods";
 
 
 class InfoScreenContainer extends React.Component {
@@ -10,28 +11,24 @@ class InfoScreenContainer extends React.Component {
     }
 
     componentDidMount() {
-        this.getTitle()
+        const location = this.props.location.pathname
+        this.setState({title: getTitle(location)})
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.location.pathname !== prevProps.location.pathname) {
-            this.getTitle()
+            const location = this.props.location.pathname
+            this.setState({title: getTitle(location)})
         }
-    }
-
-    getTitle() {
-        const location = this.props.location.pathname
-        if (location === '/add') return this.setState({title: 'Добавить дело'})
-        if (location === '/all') return this.setState({title: 'Все дела'})
-        if (location === '/favorite') return this.setState({title: 'Избранные дела'})
-        if (location === '/urgent') return this.setState({title: 'Срочные дела'})
-        if (location === '/search') return this.setState({title: 'Поиск дела'})
-        return this.setState({title: 'Просмотр дела'})
     }
 
     render() {
         return (
-            <InfoScreen title={this.state.title} color={this.props.color} img={this.props.img}/>
+            <InfoScreen title={this.state.title}
+                        showMenu={this.props.showMenu}
+                        menu={this.props.menu}
+                        color={this.props.color}
+                        img={this.props.img}/>
         )
     }
 }

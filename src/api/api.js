@@ -8,7 +8,7 @@ export const appAPI = {
     addTodo(newTodo) {
         return instance.post('.json', newTodo)
     },
-    getTodoList() {
+    getAllTodosList() {
         return instance.get('.json')
     },
     updateTodo(updateTodo) {

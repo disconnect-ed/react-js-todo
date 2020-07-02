@@ -1,16 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
 import './Navbar.sass'
 import {NavLink} from "react-router-dom";
-import { faListUl, faStar, faFire, faCheck, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faListUl, faStar, faFire, faPlus } from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
-const Navbar = ({date, activeClass, textColor, searchQuery, searchTodo}) => {
+const Navbar = ({date, activeClass, textColor, searchQuery, searchTodo, menu, showMenu}) => {
     const style = {color: textColor}
     const styleInput = {color: textColor, border: `2px solid ${textColor}`}
 
     return(
-        <nav className='nav'>
+        <nav className={`nav ${menu ? 'nav-active' : ''}`}>
             <div className="nav-search">
                 <input value={searchQuery} onChange={(event => searchTodo(event.currentTarget.value))}
                        placeholder='Поиск...' style={{...styleInput}} type="text" className="nav-search__input"/>
@@ -18,25 +18,37 @@ const Navbar = ({date, activeClass, textColor, searchQuery, searchTodo}) => {
 
             <ul className="nav-list">
                 <li className="nav-list__link">
-                    <NavLink className={activeClass + '-hover'} style={{...style}} activeClassName={activeClass} to='/all'>
+                    <NavLink onClick={() => showMenu(false)}
+                             className={activeClass + '-hover'}
+                             style={{...style}}
+                             activeClassName={activeClass} to='/all'>
                         <span><FontAwesomeIcon icon={faListUl} /></span>
                         Все
                     </NavLink>
                 </li>
                 <li className="nav-list__link">
-                    <NavLink className={activeClass + '-hover'} style={{...style}} activeClassName={activeClass} to='/favorite'>
+                    <NavLink onClick={() => showMenu(false)}
+                             className={activeClass + '-hover'}
+                             style={{...style}}
+                             activeClassName={activeClass} to='/favorite'>
                         <span><FontAwesomeIcon icon={faStar} /></span>
                         Избранные
                     </NavLink>
                 </li>
                 <li className="nav-list__link">
-                    <NavLink className={activeClass + '-hover'} style={{...style}} activeClassName={activeClass} to='/urgent'>
+                    <NavLink onClick={() => showMenu(false)}
+                             className={activeClass + '-hover'}
+                             style={{...style}}
+                             activeClassName={activeClass} to='/urgent'>
                         <span><FontAwesomeIcon icon={faFire} /></span>
                         Срочные
                     </NavLink>
                 </li>
                 <li className="nav-list__link">
-                    <NavLink className={activeClass + '-hover'} style={{...style}} activeClassName={activeClass} to='/add'>
+                    <NavLink onClick={() => showMenu(false)}
+                             className={activeClass + '-hover'}
+                             style={{...style}}
+                             activeClassName={activeClass} to='/add'>
                         <span><FontAwesomeIcon icon={faPlus} /></span>
                         Добавить
                     </NavLink>
@@ -46,6 +58,8 @@ const Navbar = ({date, activeClass, textColor, searchQuery, searchTodo}) => {
                 <h3>Текущая дата</h3>
                 <h4>{date}</h4>
             </div>
+
+
         </nav>
     )
 }

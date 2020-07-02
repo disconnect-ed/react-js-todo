@@ -34,7 +34,6 @@ let mapStateToProps = (state) => {
     return {
         searchList: state.app.searchList,
         searchQuery: state.app.searchQuery,
-        // isLoading: state.create.isLoading,
     }
 
 }

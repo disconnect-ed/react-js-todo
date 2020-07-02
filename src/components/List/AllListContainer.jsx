@@ -15,7 +15,7 @@ class AllListContainer extends React.Component {
             return <Loading/>
         }
 
-        if (!this.props.todos || this.props.todos.length === 0) {
+        if (!this.props.allTodosList || this.props.allTodosList.length === 0) {
             return <NoTodo textColor={this.props.textColor}/>
         }
 
@@ -24,7 +24,7 @@ class AllListContainer extends React.Component {
 
 
         return (
-            <List todos={this.props.todos} textColor={this.props.textColor}/>
+            <List todos={this.props.allTodosList} textColor={this.props.textColor}/>
         )
     }
 }
@@ -33,7 +33,7 @@ let urlDataContainer = withRouter(AllListContainer);
 
 let mapStateToProps = (state) => {
     return {
-        todos: state.app.todos,
+        allTodosList: state.app.allTodosList,
         isLoading: state.app.isLoading
     }
 }

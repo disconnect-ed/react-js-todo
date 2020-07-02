@@ -34,6 +34,8 @@ const Create = ({textColor, addTodo, history, editTodoData, updateTodo}) => {
             let todo = {...editTodoData}
             todo.title = todoTitle
             todo.text = todoText
+            todo.favorite = favorite
+            todo.urgent = urgent
             updateTodo(todo)
         } else {
             addTodo(todoTitle, todoText, favorite, urgent)
@@ -48,7 +50,7 @@ const Create = ({textColor, addTodo, history, editTodoData, updateTodo}) => {
             <h2 className='create__title'>Заголовок</h2>
             <p className='create__error'>{errorTitle}</p>
             <input value={title} onChange={(event) => setTitle(event.target.value)}
-                   placeholder='Введите заголовок дела...'
+                   placeholder='Введите заголовок...'
                    style={{...inputStyle}} type="text"
                    className="create__input"/>
 
@@ -56,7 +58,7 @@ const Create = ({textColor, addTodo, history, editTodoData, updateTodo}) => {
             <h2 className="create__title">Описание</h2>
             <p className='create__error'>{errorText}</p>
             <textarea value={text}
-                      placeholder='Введите описание дела...'
+                      placeholder='Введите описание...'
                       onChange={(event) => setText(event.target.value)}
                       style={{...inputStyle}}
                       className='create__textarea'/>
@@ -64,11 +66,11 @@ const Create = ({textColor, addTodo, history, editTodoData, updateTodo}) => {
             <div className="create__actions">
                 <button onClick={() => setFavorite(!favorite)} style={{opacity: favorite ? 1 : 0.3, color: textColor}}
                         className='view__action'>
-                    <span><FontAwesomeIcon style={{color: textColor}} icon={faStar}/></span> Пометить как избранное
+                    <span><FontAwesomeIcon style={{color: textColor}} icon={faStar}/></span> Избранное
                 </button>
                 <button onClick={() => setUrgent(!urgent)} style={{opacity: urgent ? 1 : 0.3, color: textColor}}
                         className='view__action'>
-                    <span><FontAwesomeIcon style={{color: textColor}} icon={faFire}/></span> Пометить как срочное
+                    <span><FontAwesomeIcon style={{color: textColor}} icon={faFire}/></span> Срочное
                 </button>
             </div>
             <button onClick={onClick} style={{border: '2px solid ' + textColor, backgroundColor: textColor}}

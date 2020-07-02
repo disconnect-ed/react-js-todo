@@ -1,11 +1,10 @@
 import {
-    CHANGE_FAVORITE,
-    CHANGE_URGENT, DELETE_TODO,
+    DELETE_TODO,
     GET_FAVORITE_LIST,
     GET_URGENT_LIST,
     IS_LOADING,
-    SEARCH_QUERY, SET_EDIT_TODO, SET_SEARCH_QUERY, SET_SEARCH_TODOS, SET_THEME,
-    SET_TODO, SET_TODO_LIST, SET_UPDATE_TODO,
+    SET_EDIT_TODO, SET_SEARCH_QUERY, SET_SEARCH_TODOS, SET_THEME,
+    SET_TODO, SET_ALL_TODOS_LIST, SET_UPDATE_TODO,
     WATCH_TODO
 } from "../reducers/app-reducer";
 import {appAPI} from "../../api/api";
@@ -16,19 +15,34 @@ export const setTodo = (newTodo) => ({type: SET_TODO, newTodo})
 export const goDeleteTodo = (todoId) => ({type: DELETE_TODO, todoId})
 export const setEditTodo = (todoId) => ({type: SET_EDIT_TODO, todoId})
 export const setUpdateTodo = (updateTodo) => ({type: SET_UPDATE_TODO, updateTodo})
-export const setTodoList = (todoList) => ({type: SET_TODO_LIST, todoList})
+export const setAllTodosList = (todoList) => ({type: SET_ALL_TODOS_LIST, todoList})
 export const getTodo = (todoId) => ({type: WATCH_TODO, todoId})
 export const setSearchTodos = (searchQuery) => ({type: SET_SEARCH_TODOS, searchQuery})
 export const setSearchQuery = (searchQuery) => ({type: SET_SEARCH_QUERY, searchQuery})
 export const setFavoriteList = () => ({type: GET_FAVORITE_LIST})
 export const setUrgentList = () => ({type: GET_URGENT_LIST})
 export const isLoading = (bool) => ({type: IS_LOADING, bool})
-export const setUrgent = (bool, id) => ({type: CHANGE_URGENT, payload: {bool, id}})
-export const setFavorite = (bool, id) => ({type: CHANGE_FAVORITE, payload: {bool, id}})
 
-export const changeUrgent = (bool, id) => {
+
+export const getAllTodosList = () => {
     return dispatch => {
-        dispatch(setUrgent(bool, id))
+        dispatch(isLoading(true))
+        appAPI.getAllTodosList().then(
+            result => {
+                if (!result.data) {
+                    dispatch(setAllTodosList([]))
+                    dispatch(isLoading(false))
+                    return
+                }
+                const todos = Object.keys(result.data).map(key => ({...result.data[key], id: key}))
+                dispatch(setAllTodosList(todos))
+                dispatch(isLoading(false))
+            },
+            error => {
+                dispatch(isLoading(false))
+                alert('При загрузке дел произошла ошибка!')
+            }
+        )
     }
 }
 
@@ -47,12 +61,6 @@ export const deleteTodo = (todoId) => {
             }
         )
 
-    }
-}
-
-export const changeFavorite = (bool, id) => {
-    return dispatch => {
-        dispatch(setFavorite(bool, id))
     }
 }
 
@@ -95,26 +103,6 @@ export const addTodo = (title, text, favorite, urgent) => {
     }
 }
 
-export const getTodoList = () => {
-    return dispatch => {
-        dispatch(isLoading(true))
-        appAPI.getTodoList().then(
-            result => {
-                if (!result.data) {
-                    dispatch(isLoading(false))
-                    return
-                }
-                const todos = Object.keys(result.data).map(key => ({...result.data[key], id: key}))
-                dispatch(setTodoList(todos))
-                dispatch(isLoading(false))
-            },
-            error => {
-                dispatch(isLoading(false))
-                alert('При загрузке дел произошла ошибка!')
-            }
-        )
-    }
-}
 
 export const getFavoriteList = () => {
     return dispatch => {
