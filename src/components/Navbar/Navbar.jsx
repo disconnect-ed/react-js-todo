@@ -3,6 +3,7 @@ import './Navbar.sass'
 import {NavLink} from "react-router-dom";
 import { faListUl, faStar, faFire, faPlus } from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Logout} from "../Auth/Logout/Logout";
 
 
 const Navbar = ({date, activeClass, textColor, searchQuery, searchTodo, menu, showMenu}) => {
@@ -57,6 +58,7 @@ const Navbar = ({date, activeClass, textColor, searchQuery, searchTodo, menu, sh
             <div style={{...style}} className="nav-date">
                 <h3>Текущая дата</h3>
                 <h4>{date}</h4>
+                <Logout/>
             </div>
 
 
